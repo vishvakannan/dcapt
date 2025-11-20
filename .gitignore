@@ -1,0 +1,10 @@
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+.streamlit/
+dcapt_tn_template.xlsx
+dcapt_tn_test_filled.xlsx
+dcapt_mapped_output.xlsx
+dcapt.xlsx
+streamlit.log
