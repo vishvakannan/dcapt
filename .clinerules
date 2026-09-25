@@ -1,0 +1,16 @@
+# DCAPT — Cline rules
+
+- `reference/scoring-spec.md` is the only source of truth for the priority formula. Any scoring
+  code (the DB trigger, the client preview) must match it exactly; if you change the formula,
+  update the spec first.
+- Reference data — climate risks/strategies/interventions, departments/schemes, co-benefit
+  items, funding-source tiers, scoring weights — lives in Supabase tables. Never hardcode it in
+  app code.
+- `priority_score` is always computed server-side by `compute_priority_score()` in
+  `supabase/migrations/00002_scoring.sql`. Never write it from the client.
+- RLS policies are the real access boundary, not the app. Never bypass RLS with a service-role
+  key from client code.
+- `schemes_master.csv` is provisional — most scheme names are placeholders pending real
+  government policy notes. Don't treat it as finished data.
+- Don't port code or patterns from the `legacy-streamlit-snapshot` git tag. It's a superseded
+  prototype with two known bugs and a formula that's since been reworked.
